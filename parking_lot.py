@@ -41,11 +41,11 @@ class ParkingLot:
 
         if found:
             heapq.heappush(self.available_parking_slots, slot_to_be_open)
-            del self.color_registration_mapping[found]
-            car_leaving = self.color_registration_mapping[slot_to_be_open]
+            del self.registration_slot_mapping[found]
+            car_leaving = self.slot_car_mapping[slot_to_be_open]
             self.color_registration_mapping[car_leaving.color].remove(found)
             del self.slot_car_mapping[slot_to_be_open]
-            print ("Slot No. {} is free".format(slot_to_be_open))
+            print ("Slot number {} is open".format(slot_to_be_open))
             return True
 
         else:
@@ -53,7 +53,7 @@ class ParkingLot:
             return False
 
     def park(self, car):
-        slot_no = self.get_nearest_slot()
+        slot_no = self.get_nearest_spot()
         if slot_no is None:
             print("Sorry, parking lot is full")
             return
